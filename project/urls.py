@@ -20,4 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('jwt_auth.urls')),
+    path('synths/', include('synths.urls')),
+    path('sequencer/', include('sequencer.urls')),
 ]
