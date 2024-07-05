@@ -11,7 +11,7 @@ User = get_user_model()
 class JWTAuthentication(BasicAuthentication):
     def authenticate(self, request):
         header = request.headers.get('Authorization')
-
+        print(header)
         if not header:
             return None
         
@@ -31,3 +31,4 @@ class JWTAuthentication(BasicAuthentication):
 
 
         return (user, token)
+        

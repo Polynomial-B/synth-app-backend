@@ -3,5 +3,5 @@ from ..models import Sequencer
 
 class SequencerSerializer(serializers.ModelSerializer):
 	class Meta:
-		sequencer = Sequencer
+		model = Sequencer
 		fields = '__all__'

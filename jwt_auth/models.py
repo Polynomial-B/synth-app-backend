@@ -11,5 +11,3 @@ class User(AbstractUser):
                 code="invalid_registration",
             ),
 	],)
-	first_name = models.CharField(max_length=50)
-	last_name = models.CharField(max_length=50)

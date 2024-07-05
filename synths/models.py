@@ -10,7 +10,7 @@ class Synth(models.Model):
     freqs = ArrayField(models.IntegerField())
     
     owner = models.ForeignKey(
-    'jwt_auth.User',
-    related_name="synths",
-    on_delete=models.CASCADE
-)
+        'jwt_auth.User',
+        related_name="synth",
+        on_delete=models.CASCADE
+    )
