@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.db.models import JSONField
 
 class Synth(models.Model):
     def __str__(self):
@@ -7,6 +8,12 @@ class Synth(models.Model):
     
     name = models.CharField(max_length=80)
     a_d_s_r = ArrayField(models.IntegerField())
+    effects = ArrayField(
+            models.JSONField(default=dict),
+            blank=True,
+            null=True
+    )
+
     freqs = ArrayField(models.IntegerField())
     
     owner = models.ForeignKey(
@@ -14,3 +21,4 @@ class Synth(models.Model):
         related_name="synth",
         on_delete=models.CASCADE
     )
+

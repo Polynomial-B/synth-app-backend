@@ -16,4 +16,3 @@ class Sequencer(models.Model):
         related_name="sequencer",
         on_delete=models.CASCADE
     )
-    
