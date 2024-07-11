@@ -27,7 +27,7 @@ class JWTAuthentication(BasicAuthentication):
         except jwt.exceptions.InvalidTokenError:
             raise PermissionDenied(detail="Invalid Token")
         except User.DoesNotExist:
-            raise PermissionDenied(detail="User Note Found")
+            raise PermissionDenied(detail="User Not Found")
 
 
         return (user, token)

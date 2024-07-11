@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 from .models import Synth
 from .serializers.common import SynthSerializer
@@ -11,9 +11,9 @@ from .serializers.populated import PopulatedSynthSerializer
 
 class SynthListView(APIView):
 	permission_classes = (IsAuthenticatedOrReadOnly, )
-	# get synths from 
-	def get(self, _request):
-		synths = Synth.objects.all()
+	
+	def get(self, request):
+		synths = Synth.objects.filter(owner=request.user.id)
 		serialized_synths = SynthSerializer(synths, many=True)
 		return Response(serialized_synths.data, status=status.HTTP_200_OK)
 	
@@ -53,10 +53,6 @@ class SynthDetailView(APIView):
 		if synth_to_edit.owner.id != request.user.id and not (request.user.is_staff or request.user.is_superuser):
 			return Response({'message': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
 
-
-		request.data['owner'] = original_owner
-		
-		original_owner = synth_to_edit.owner.id
 
 		updated_synth = SynthSerializer(synth_to_edit, data=request.data)
 		
