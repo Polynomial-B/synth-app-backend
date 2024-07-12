@@ -8,6 +8,7 @@ class Synth(models.Model):
     
     name = models.CharField(max_length=80)
     a_d_s_r = ArrayField(models.IntegerField())
+    waveform = models.CharField(max_length=20)
     effects = ArrayField(
             models.JSONField(default=dict),
             blank=True,
