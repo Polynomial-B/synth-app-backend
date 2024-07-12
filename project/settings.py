@@ -39,7 +39,7 @@ DEBUG = ENV == 'DEV'
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = [str(os.getenv('DEPLOY_URL'))]
+CSRF_TRUSTED_ORIGINS = ['https://sound-synth-5185b5644bb0.herokuapp.com']
 
 # Application definition
 
